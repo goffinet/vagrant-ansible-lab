@@ -1,0 +1,3 @@
+vbox_dependencies:
+  - libarchive-tools
+  - curl

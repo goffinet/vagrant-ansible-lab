@@ -1,0 +1,36 @@
+---
+#- name: "Install dependencies"
+#  hosts: localhost
+#  become: true
+#  tasks:
+#    - include_vars: "{{ ansible_os_family }}.yml"
+#      ignore_errors: yes
+#    - package:
+#        name: "{{ vbox_dependencies }}"
+#      ignore_errors: yes
+- name: "Vagrant Virtualbox Setup"
+  hosts: localhost
+  become: true
+  vars:
+    vagrant_version: "2.2.14"
+    vbox_version: "6.1"
+    packer_version: "1.6.5"
+    vbox_users:
+      - vagrant
+      - root
+  roles:
+    - name: "Install dependencies"
+      role: dependencies
+    - name: "Install Virtualbox"
+      role: virtualbox
+    - name: "Install Vagrant"
+      role: vagrant
+    - name: "Install Packer"
+      role: packer
+    - name: "Install Terraform"
+      role: terraform
+    - name: "Rebuild kernel"
+      role: kernel
+  tasks:
+    - name: "Ensure that Virtualbox is the Vagrant default provider"
+      shell: "VAGRANT_DEFAULT_PROVIDER=virtualbox >> ~/.profile && . ~/.profile"

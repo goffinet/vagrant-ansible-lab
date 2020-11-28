@@ -1,0 +1,17 @@
+vbox_dependencies:
+  - epel-release
+  - kernel-headers
+  - kernel-devel
+  - dkms
+  - elfutils-libelf-devel
+  - qt5-qtx11extras
+  - bsdtar
+  - binutils
+  - kernel-core
+  - kernel-modules
+  - libgomp
+  - make
+  - patch
+  - gcc
+  - glibc-headers
+  - glibc-devel
