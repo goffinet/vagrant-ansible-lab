@@ -5,7 +5,7 @@ The `setup.sh` Bash script install Ansible on a virtualization server running wi
 
 ```bash
 yum -y install git || apt -y install git
-git clone -r https://github.com/goffinet/vagrant-ansible-lab.git
+git clone --recursive https://github.com/goffinet/vagrant-ansible-lab.git
 cd vagrant-ansible-lab
 ./setup.sh
 ```
