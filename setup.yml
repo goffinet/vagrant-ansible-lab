@@ -15,6 +15,7 @@
     vagrant_version: "2.2.14"
     vbox_version: "6.1"
     packer_version: "1.6.5"
+    terraform_version: "0.13.5"
     vbox_users:
       - vagrant
       - root
