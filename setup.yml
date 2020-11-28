@@ -19,8 +19,6 @@
       role: vagrant
     - name: "Install Packer"
       role: packer
-    - name: "Install Terraform"
-      role: terraform
     - name: "Rebuild kernel"
       role: kernel
   tasks:
