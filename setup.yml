@@ -23,4 +23,7 @@
       role: kernel
   tasks:
     - name: "Ensure that Virtualbox is the Vagrant default provider"
-      shell: "VAGRANT_DEFAULT_PROVIDER=virtualbox >> ~/.profile && . ~/.profile"
+      block:
+        - blockinfile:
+            path: ~/.profile
+            block: "VAGRANT_DEFAULT_PROVIDER=virtualbox"
