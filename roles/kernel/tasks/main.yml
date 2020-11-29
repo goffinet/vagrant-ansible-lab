@@ -22,9 +22,7 @@
       command: "/usr/lib/virtualbox/vboxdrv.sh setup"
       register: vboxdrv
       ignore_errors: yes
-    - debug:
-        msg: "{{ kernel_update }}"
-    - name: "Rebooting"
-      command: /sbin/reboot
-      when: kernel_update.changed == true
+    #- name: "Rebooting"
+    #  command: /sbin/reboot
+    #  when: kernel_update.changed == true
   when: ansible_os_family == 'Debian'
