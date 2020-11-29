@@ -1,0 +1,26 @@
+- name: Upgrade all apt packages
+  apt:
+    upgrade: dist
+    force_apt_get: yes
+- name: "Install packages necessary for kernel compilation"
+  apt:
+    name:
+      - "build-essential"
+      - "libssl-dev"
+- name: "Set the list of packages for Kernel v5.9.11"
+  set_fact:
+    source_kernel_packages: "https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.9.11/amd64"
+    local_path_kernel_packages: "/tmp"
+    kernel_packages:
+      - "linux-headers-5.9.11-050911_5.9.11-050911.202011241443_all.deb"
+- name: "Download the list of packages for Kernel"
+  get_url:
+    url: "{{ source_kernel_packages }}/{{ item }}"
+    dest: "{{ local_path_kernel_packages }}/{{ item }}"
+  loop: "{{ kernel_packages }}"
+- name: install .deb using dpkg
+  apt:
+    deb: "{{ local_path_kernel_packages }}/{{ item }}"
+    state: present
+  loop: "{{ kernel_packages }}"
+  register: kernel_update
